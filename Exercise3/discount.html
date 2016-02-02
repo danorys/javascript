@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<htm lang='en'>
+<head>
+	<meta charset="UTF-8">
+	<title>Project</title>
+</head>
+<body>
+	
+	<h1>CS50x Miami Introduction to Javascript</h1>
+	<h2>Discounter</h2>
+	<p>Daniel Duffy's solution for Class 2 Quiz 1</p>
+	<script>
+	/*
+	Add a second function parameter of the discount percentage (0.5, 0.2, 0.1, etc)
+	Use the discount percentage inside the function
+	*/
+	function calculateDiscount(amount, percentage) {
+		return amount * percentage;
+	}	
+
+	var price = 20;
+	var percentage = 0.5
+	var discount = calculateDiscount(price, percentage);
+	console.log("Original Price : $" + price);
+	console.log("Only today! Just $" + discount);
+	</script>
+</body>

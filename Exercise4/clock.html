@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<div class="jumbotron">
+		<h1><center>Exercise 4 Part 1 Document Object Model</center></h1>
+	</div>
+	<div>
+		<center><h2>Create a clock using Timeouts</h2></center>
+
+
+	<script>
+	/*
+	Implement a Javascript clock using Timeouts.
+	It should display the current hh:mm:ss and update the second count every second.
+	Embed the clock on an HTML website.
+	*/
+	//document.getElementById("clock").addEventListener("click", function(){
+	function startTime() {
+		var today = new Date();
+	    var h = today.getHours();
+	    var m = today.getMinutes();
+	    var s = today.getSeconds();
+	    m = checkTime(m);
+	    s = checkTime(s);
+	    document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
+	    var t = setTimeout(startTime, 500);
+	}
+	function checkTime(i) {
+	    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+	    return i;
+	}	
+	</script>
+
+
+</head>
+<body onload="startTime()">
+
+	<div id="txt"></div>
+</body>
+</html>

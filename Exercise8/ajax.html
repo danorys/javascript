@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<h1>Daniel Duffy's solutions to Exercise 8</h1>
+</head>
+<body>
+
+<!--
+	<h2>Rima's Page</h2>
+	<div id='main'></div>
+
+<script>
+/* 
+
+	Access Rima's page
+
+ */
+
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = doSomething;
+function doSomething(){
+  if (xhr.readyState === 4 && xhr.status == 200) {
+    var h = document.getElementById("main");                // Create a <h1> element
+    var t = document.createTextNode("Entering ready state  " + xhr.readyState);     // Create a text node
+    h.appendChild(t);  
+  }
+}
+   
+xhr.open("GET", "http://codepen.io/rimager/pen/NxVoVy.html", true);
+xhr.send(null);
+
+</script>
+ -->
+<!--
+Implement the Yahoo Weather API
+https://developer.yahoo.com/weather/
+Make an Ajax call to the API and display the result on a website.
+ -->
+<h2>Display temperature</h2>
+<div id="temp"></div>
+
+<script>
+	var yhr = new XMLHttpRequest();
+	yhr.onreadystatechange = getWeather;
+	function getWeather(){
+		if (yhr.readyState === 4 && yhr.status == 200) {
+			var h = document.getElementById("temp");                // Create a div element
+			var t = document.createTextNode("Entering ready state  " + yhr.readyState);     // Create a text node
+			h.appendChild(t);  
+		}
+	}
+	   
+	yhr.open("GET", "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys", true);
+	
+	yhr.send(null);	
+
+
+</script>
+
+<!-- 
+	Yahoo Weather's Sample
+<script>	
+	var callbackFunction = function(data) {
+		var wind = data.query.results.channel.wind;
+	    alert(wind.chill);
+	};
+
+</script>
+
+<script src="https://query.yahooapis.com/v1/public/yql?q=select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='washington, dc')&format=json&callback=callbackFunction"></script>
+ -->
+
+<h2>Read book</h2>
+<div id="temp"></div>
+<!--
+
+/*
+Implement the Google Books API
+https://developers.google.com/books/
+Make an Ajax call to the API and display a Book Info.
+ */
+
+  -->
+<script>
+	var zhr = new XMLHttpRequest();
+	if (zhr) {
+		zhr.onreadystatechange = getBook;
+		function getBook() {
+			if (zhr.readyState === 4 && zhr.status == 200) {
+				var h = document.getElementById("temp");                // Create a div element
+				var t = document.createTextNode("Entering ready state  " + yhr.readyState);     // Create a text node
+				h.appendChild(t);
+			}	
+		}
+	}
+	// zhr.open("GET", "https://developer.google.com/books/terms.html", true);
+	zhr.open("GET", "https://www.googleapis.com/plus/v1/activities?query=Google%2B&orderBy=best", true);
+	
+	zhr.send(null);	
+
+</script>
+	
+</body>
+</html>

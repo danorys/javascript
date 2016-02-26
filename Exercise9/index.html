@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	
+
+<script>
+
+/*
+Use Ajax and JSONP to display your Github data using http://githubbadge.appspot.com/
+Display your languages, last_project, last_project_url, repo and follower count.
+Sample URL: http://githubbadge.appspot.com/rimager
+*/
+
+/* ajax/json sample from githubbadge.appspot.com.....
+
+$.ajax({
+    type: 'GET',
+    url: 'http://githubbadge.appspot.com/badge/danorys',
+    dataType: 'jsonp',
+    success: function(json) {
+        var result = '<h3>' + json.user.login + '</h3>' +
+                     '<p>Languages: ' + json.languages + '</p>' +
+                     '<p>Last Project: ' + json.last_project + '</p>' +
+                     '<p>Last Project URL: ' + json.last_project_url + '</p>'
+                     '<p>Followers: ' + json.user.followers + '</p>';
+        $('#badge').append(result);
+    }
+});
+ */
+ 
+
+ /* 
+ AJAX comments to get my badge 
+  */ 
+/* 
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+     document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+
+ */
+/*
+Based upon Rima's JSONP Example in Code Pen
+ */ 
+
+
+
+
+ function handleResponse(json){
+    var result = document.createTextNode ('<h3>' + json.user.login + '</h3>' +
+       '<p>Languages: ' + json.languages + '</p>' +
+       '<p>Last Project: ' + json.last_project + '</p>' +
+       '<p>Last Project URL: ' + json.last_project_url + '</p>' +
+       '<p>Followers: ' + json.user.followers + '</p>');
+  console.log(json);
+  badges.appendChild(result);
+}
+    
+
+/* 
+Wikipedia JSONP exmaple
+ */
+</script>
+
+<script type="application/javascript" src="http://githubbadge.appspot.com/badge/danorys?callback=handleResponse">
+</script>
+
+
+
+<!--
+XSS
+ -->
+ <script>
+function strip(html)
+{
+   var tmp = document.createElement("DIV");
+   tmp.innerHTML = html;
+   return tmp.textContent||tmp.innerText;
+}
+
+
+strip("<img onerror='alert(\"could run arbitrary JS here\")' src=bogus>");
+</script>
+
+</head>
+<body>
+<h1>JSONP</h1>
+<div id="badge"></div>
+
+<script>
+var badges = document.getElementById("badge");
+</script>
+
+<script>
+var script = document.createElement("script");
+script.src = "http://freegeoip.net/json/github.com?callback=handleResponse";
+
+document.body.appendChild(script);
+
+</script>
+</body>
+</html>
